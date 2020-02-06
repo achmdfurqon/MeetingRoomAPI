@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingRoomAPI", "MeetingRoomAPI\MeetingRoomAPI.csproj", "{E81F5981-81BC-4720-B2F6-6616AA94916B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingRoomClient", "MeetingRoomClient\MeetingRoomClient.csproj", "{E68CDCBB-3C78-4F64-B060-7EA9330AF213}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E81F5981-81BC-4720-B2F6-6616AA94916B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E81F5981-81BC-4720-B2F6-6616AA94916B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E81F5981-81BC-4720-B2F6-6616AA94916B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E81F5981-81BC-4720-B2F6-6616AA94916B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E68CDCBB-3C78-4F64-B060-7EA9330AF213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E68CDCBB-3C78-4F64-B060-7EA9330AF213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E68CDCBB-3C78-4F64-B060-7EA9330AF213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E68CDCBB-3C78-4F64-B060-7EA9330AF213}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46FD2044-4281-4E6E-AD3A-88ED67EEF82D}
+	EndGlobalSection
+EndGlobal
