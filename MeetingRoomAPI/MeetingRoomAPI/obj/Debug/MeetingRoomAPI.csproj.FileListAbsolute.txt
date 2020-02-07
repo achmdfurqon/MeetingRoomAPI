@@ -106,10 +106,10 @@ D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\bin\Microsoft.Owin.Securi
 D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\bin\Microsoft.Owin.Security.OAuth.xml
 D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\bin\System.Web.Http.Owin.xml
 D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\obj\Debug\MeetingRoomAPI.csprojAssemblyReference.cache
 D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\obj\Debug\MeetingRoomAPI.csproj.CoreCompileInputs.cache
 D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\obj\Debug\MeetingRoomAPI.csproj.CopyComplete
 D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\obj\Debug\MeetingRoomAPI.dll
 D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\obj\Debug\MeetingRoomAPI.pdb
-D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\obj\Debug\MeetingRoomAPI.Migrations.AddTables.resources
+D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\obj\Debug\MeetingRoomAPI.csprojAssemblyReference.cache
+D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\obj\Debug\MeetingRoomAPI.Migrations.AddModelsToDatabase.resources
 D:\Github\MeetingRoomAPI\MeetingRoomAPI\MeetingRoomAPI\obj\Debug\MeetingRoomAPI.csproj.GenerateResource.cache

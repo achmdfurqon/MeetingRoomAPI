@@ -1,4 +1,5 @@
 ﻿using MeetingRoomAPI.Models;
+using MeetingRoomAPI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,7 +15,7 @@ namespace MeetingRoomAPI.Controllers
         ApplicationDbContext context = new ApplicationDbContext();
 
         [HttpGet]
-        public IQueryable<RoleModels> GetRoles()
+        public IQueryable<RolesVM> GetRoles()
         {
             return context.Roles;
         }
@@ -23,7 +24,7 @@ namespace MeetingRoomAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetRoles(int id)
         {
-            RoleModels role = context.Roles.Find(id);
+            RolesVM role = context.Roles.Find(id);
             if (role != null)
             {
                 return Ok(role);
@@ -33,7 +34,7 @@ namespace MeetingRoomAPI.Controllers
 
         //[ResponseType(typeof(RoleModels))]
         [HttpPost]
-        public IHttpActionResult Post(RoleModels role)
+        public IHttpActionResult Post(RolesVM role)
         {
             if (!string.IsNullOrWhiteSpace(role.Name))
             {
@@ -49,7 +50,7 @@ namespace MeetingRoomAPI.Controllers
 
         //[ResponseType(typeof(void))]
         [HttpPut]
-        public IHttpActionResult Put(int id, RoleModels role)
+        public IHttpActionResult Put(int id, RolesVM role)
         {
             var put = context.Roles.Find(id);
             if (put != null)

@@ -1,0 +1,198 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+<hr />
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="PopUpForm();">Add New</button>
+<hr />
+
+<table id="table" class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Room Name</th>
+            <th>Capacity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+</table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h3 class="modal-title" id="myModalLabel">Role Form</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label id="idlabel" for="Id">Id</label>
+                    <input type="text" class="form-control" id="roomId" placeholder="Id" />
+                </div>
+                <div class="form-group">
+                    <label for="Name">Room Name</label>
+                    <input type="text" class="form-control" id="roomName" placeholder="Room Name" />
+                </div>
+                <div class="form-group">
+                    <label for="Capacity">Capacity</label>
+                    <input type="number" min="1" class="form-control" id="capacity" placeholder="Capacity" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="Save" onclick="Validate();">Save</button>
+                <button type="button" class="btn btn-primary" id="Update" onclick="Validate();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/font-awesome.min.css">
+
+@section scripts {
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            debugger;
+            table = $("#table").DataTable({
+                "ajax": {
+                    "url": "/Rooms/List",
+                    "type": "GET",
+                    "dataType": "json"
+                },
+                "columns": [
+                    { "data": "Name" },
+                    {"data": "Capacity"},
+                    {
+                        "render": function (data, type, row) {
+                            return "<a href='#' data-toggle='tooltip' data-placement='left' title='Edit' class='btn btn-warning' onclick=GetById('" + row.Id + "');><i class='fa fa-pencil'></i> Edit</a> |" +
+                                " <a href='#' data-toggle='tooltip' data-placement='right' title='Delete' class='btn btn-danger' onclick=Delete('" + row.Id + "');><i class='fa fa-trash'></i> Delete</a > ";
+                        }
+                    }
+                ]
+            });
+        });
+        function Delete(Id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'red',
+                cancelButtonColor: 'green',
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                debugger;
+                if (result.value) {
+                    $.ajax({
+                        "url": "/Rooms/Delete/",
+                        "datatype": "json",
+                        "data": { Id: Id }
+                    }).then((result) => {
+                        debugger;
+                        if (result.data != null) {
+                            Swal.fire('Success', 'Your file has been deleted.', 'success');
+                            table.ajax.reload();
+                        } else {
+                            Swal.fire('Failed', 'Your file not deleted.', 'failed')
+                        }
+                    })
+                }
+            })
+        }
+        function Edit() {
+            var room = new Object();
+            room.Id = $("#roomId").val();
+            room.Name = $("#roomName").val();
+            room.Capacity = $("#capacity").val();
+            debugger;
+            $.ajax({
+                "url": "/Rooms/Edit/",
+                //"type": "GET",
+                "datatype": "json",
+                "data": room
+            }).then((result) => {
+                debugger;
+                if (result.data != 0) {
+                    //  debugger;
+                    Swal.fire('Success', 'Your file has been updated.', 'success');
+                    table.ajax.reload();
+                } else {
+                    Swal.fire('Failed', 'Your file not updated.', 'failed')
+                }
+                $("#myModal").modal('hide');
+            })
+        }
+        function GetById(Id) {
+            $.ajax({
+                "url": "/Rooms/Detail/",
+                "type": "GET",
+                "dataType": "json"
+                , "data": { id: Id }
+            }).then((result) => {
+                debugger;
+                document.getElementById("roomId").disabled = true;
+                $("#roomId").val(result.data.Id);
+                $("#roomName").val(result.data.Name);
+                $("#capacity").val(result.data.Capacity);
+                $("#myModal").modal('show');
+                $("#Update").show();
+                $("#Save").hide();
+            });
+        }
+        function Save(){
+            var room = new Object();
+            room.Name = $("#roomName").val();
+            room.Capacity = $("#capacity").val();
+            debugger;
+            $.ajax({
+                "url": "/Rooms/Create",
+                "type": "POST",
+                "datatype": "json",
+                "data": room
+            }).then((result) => {
+                if (result.data != 0) {
+                    Swal.fire('Success', 'Your file has been inserted.', 'success');
+                    table.ajax.reload();
+                } else {
+                    Swal.fire('Failed', 'Your file not inserted.', 'failed')
+                }
+                $("#myModal").modal('hide');
+            })
+        }
+        function PopUpForm() {
+            document.getElementById("roomId").disabled = true;
+            $("#roomId").val('');
+            $("#idlabel").hide();
+            $("#roomId").hide();
+            $("#roomName").val('');
+            $("#capacity").val('');
+            $("#Update").hide();
+            $('#Save').show();
+        }
+        function Validate() {
+            debugger;
+            if ($("#roomName").val() == "" || $("#roomName").val() == " ") {
+                Swal.fire('Please Fill Room Name');
+            }
+            else if($("#capacity").val() == "" || $("#capacity").val() == " ") {
+                Swal.fire('Please Fill Capatity');
+            }
+            else if($("#roomId").val() == "" || $("#roomId").val() == " ") {
+                Save();
+            } else {
+                Edit();
+            }
+        }
+    </script>
+}

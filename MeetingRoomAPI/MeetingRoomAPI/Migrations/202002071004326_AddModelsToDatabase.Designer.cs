@@ -7,13 +7,13 @@ namespace MeetingRoomAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddTables : IMigrationMetadata
+    public sealed partial class AddModelsToDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddModelsToDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002060803231_AddTables"; }
+            get { return "202002071004326_AddModelsToDatabase"; }
         }
         
         string IMigrationMetadata.Source

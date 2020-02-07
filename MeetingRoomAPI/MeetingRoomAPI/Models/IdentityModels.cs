@@ -22,10 +22,10 @@ namespace MeetingRoomAPI.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<RoleModels> Roles { get; set; }
-        public DbSet<UserModels> Users { get; set; }
-        public DbSet<RoomModels> Rooms { get; set; }
-        public DbSet<RoomLoanModels> RoomLoans { get; set; }
+        public DbSet<RolesVM> Roles { get; set; }
+        public DbSet<UsersVM> Users { get; set; }
+        public DbSet<RoomsVM> Rooms { get; set; }
+        public DbSet<RoomLoansVM> RoomLoans { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

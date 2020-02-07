@@ -1,4 +1,5 @@
 ﻿using MeetingRoomAPI.Models;
+using MeetingRoomAPI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,49 +15,47 @@ namespace MeetingRoomAPI.Controllers
         ApplicationDbContext context = new ApplicationDbContext();
 
         [HttpGet]
-        public IQueryable<RoomModels> GetRoles()
+        public IQueryable<RoomsVM> GetRooms()
         {
             return context.Rooms;
         }
-
-        //[ResponseType(typeof(RoleModels))]
+        
         [HttpGet]
-        public IHttpActionResult GetRoles(int id)
+        public IHttpActionResult GetRooms(int id)
         {
-            RoomModels role = context.Rooms.Find(id);
-            if (role != null)
+            RoomsVM room = context.Rooms.Find(id);
+            if (room != null)
             {
-                return Ok(role);
+                return Ok(room);
             }
             return NotFound();
         }
-
-        //[ResponseType(typeof(RoleModels))]
+        
         [HttpPost]
-        public IHttpActionResult Post(RoomModels role)
+        public IHttpActionResult Post(RoomsVM room)
         {
-            if (!string.IsNullOrWhiteSpace(role.Name))
+            if (!string.IsNullOrWhiteSpace(room.Name) && !string.IsNullOrWhiteSpace(room.Capacity.ToString()))
             {
-                context.Rooms.Add(role);
+                context.Rooms.Add(room);
                 var result = context.SaveChanges();
                 if (result > 0)
                 {
-                    return Ok(role);
+                    return Ok(room);
                 }
             }
             return BadRequest();
         }
-
-        //[ResponseType(typeof(void))]
+        
         [HttpPut]
-        public IHttpActionResult Put(int id, RoomModels role)
+        public IHttpActionResult Put(int id, RoomsVM room)
         {
             var put = context.Rooms.Find(id);
             if (put != null)
             {
-                if (!string.IsNullOrWhiteSpace(role.Name))
+                if (!string.IsNullOrWhiteSpace(room.Name) && !string.IsNullOrWhiteSpace(room.Capacity.ToString()))
                 {
-                    put.Name = role.Name;
+                    put.Name = room.Name;
+                    put.Capacity = room.Capacity;
                     context.Entry(put).State = EntityState.Modified;
                     var result = context.SaveChanges();
                     if (result > 0)
@@ -68,17 +67,16 @@ namespace MeetingRoomAPI.Controllers
             }
             return NotFound();
         }
-
-        //[ResponseType(typeof(RoleModels))]
+        
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var role = context.Rooms.Find(id);
-            if (role != null)
+            var room = context.Rooms.Find(id);
+            if (room != null)
             {
-                context.Rooms.Remove(role);
+                context.Rooms.Remove(room);
                 context.SaveChanges();
-                return Ok(role);
+                return Ok(room);
             }
             return BadRequest();
         }

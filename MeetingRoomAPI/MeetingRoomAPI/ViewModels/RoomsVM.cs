@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace MeetingRoomAPI.Models
+namespace MeetingRoomAPI.ViewModels
 {
     [Table("TB_M_Rooms")]
-    public class RoomModels
+    public class RoomsVM
     {
         public int Id { get; set; }
         public string Name { get; set; }

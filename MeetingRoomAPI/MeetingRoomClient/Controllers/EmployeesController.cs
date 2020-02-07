@@ -1,4 +1,4 @@
-﻿using MeetingRoomAPI.Models;
+﻿using MeetingRoomAPI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,19 +26,19 @@ namespace MeetingRoomClient.Controllers
 
         public JsonResult List()
         {
-            IEnumerable<EmployeeModels> employees = null;
+            IEnumerable<EmployeesVM> employees = null;
             var responseTask = client.GetAsync("Employees");
-            //responseTask.Wait();
+            responseTask.Wait();
             var result = responseTask.Result;
             if (result.IsSuccessStatusCode)
             {
-                var readTask = result.Content.ReadAsAsync<IList<EmployeeModels>>();
-                //readTask.Wait();
+                var readTask = result.Content.ReadAsAsync<IList<EmployeesVM>>();
+                readTask.Wait();
                 employees = readTask.Result;
             }
             else
             {
-                employees = Enumerable.Empty<EmployeeModels>();
+                employees = Enumerable.Empty<EmployeesVM>();
                 ModelState.AddModelError(string.Empty, "404 Not Found");
             }
             return Json(new { data = employees }, JsonRequestBehavior.AllowGet);

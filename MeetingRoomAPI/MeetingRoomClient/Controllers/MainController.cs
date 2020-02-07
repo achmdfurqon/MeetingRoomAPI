@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MeetingRoomClient.Controllers
 {
-    public class HomeController : Controller
+    public class MainController : Controller
     {
         public ActionResult Index()
         {
@@ -15,7 +15,7 @@ namespace MeetingRoomClient.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Meeting Room Loan System.";
 
             return View();
         }
