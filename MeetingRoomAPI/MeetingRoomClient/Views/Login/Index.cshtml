@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="form-group">
+    <label id="idlabel" for="Id">Email</label>
+    <input type="text" class="form-control" id="email" placeholder="Email" />
+</div>
+<div class="form-group">
+    <label for="Name">Password</label>
+    <input type="password" class="form-control" id="password" placeholder="Password" />
+</div>
+<button type="button" class="btn btn-primary" id="login" onclick="Login();">Login</button>
+
+@section scripts {
+<script>
+    function Login() {
+        var user = new Object();
+        user.Email = $("#email").val();
+        user.Password = $("#password").val();
+        debugger;
+        $.ajax({
+            "url": "/Login/LoginUser/",
+            "type": "POST",
+            "dataType": "json",
+            "data": user
+        }).then((result) => {
+            if (result.data != null) {
+                Swal.fire(
+                    'Success!',
+                    'Login Success.',
+                    'success'
+                )
+            }
+            else {
+                Swal.fire(
+                    'Failed!',
+                    'Login Failed.',
+                    'FAILED'
+                )
+            }
+        });
+    }
+</script>
+}
