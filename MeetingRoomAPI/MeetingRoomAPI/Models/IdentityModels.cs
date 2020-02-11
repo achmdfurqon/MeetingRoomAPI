@@ -24,6 +24,7 @@ namespace MeetingRoomAPI.Models
     {
         public DbSet<RolesVM> Roles { get; set; }
         public DbSet<UsersVM> Users { get; set; }
+        public DbSet<UserRolesVM> UserRoles { get; set; }
         public DbSet<RoomsVM> Rooms { get; set; }
         public DbSet<RoomLoansVM> RoomLoans { get; set; }
 
