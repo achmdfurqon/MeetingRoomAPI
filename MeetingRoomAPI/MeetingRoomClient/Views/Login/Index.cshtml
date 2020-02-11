@@ -16,33 +16,32 @@
 <button type="button" class="btn btn-primary" id="login" onclick="Login();">Login</button>
 
 @section scripts {
-<script>
-    function Login() {
-        var user = new Object();
-        user.Email = $("#email").val();
-        user.Password = $("#password").val();
-        debugger;
-        $.ajax({
-            "url": "/Login/LoginUser/",
-            "type": "POST",
-            "dataType": "json",
-            "data": user
-        }).then((result) => {
-            if (result.data != null) {
-                Swal.fire(
-                    'Success!',
-                    'Login Success.',
-                    'success'
-                )
-            }
-            else {
-                Swal.fire(
-                    'Failed!',
-                    'Login Failed.',
-                    'FAILED'
-                )
-            }
-        });
-    }
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        function Login() {
+            var user = new Object();
+            user.Email = $("#email").val();
+            user.Password = $("#password").val();
+            debugger;
+            $.ajax({
+                "url": "/Login/LoginUser/",
+                "type": "POST",
+                "dataType": "json",
+                "data": { Email: user.Email, Password: user.Password }
+            }).then((StatusCode) => {
+                debugger;
+                if (StatusCode.data.Result.StatusCode == 200) {
+                    //window.location = 'Home'
+                    window.location.replace("http://localhost:62529/");
+                }
+                else {
+                    Swal.fire({
+                        icon: 'Failed!',
+                        title: 'Login Failed.',
+                        text: 'FAILED'
+                    })
+                }
+            })
+        }
+    </script>
 }

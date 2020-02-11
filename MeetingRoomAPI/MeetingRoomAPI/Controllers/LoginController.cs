@@ -43,7 +43,7 @@ namespace MeetingRoomAPI.Controllers
                         {
                         //var password = Hashing.validate(userModels.Password, login.Password);
                         var password = BCrypt.Net.BCrypt.Verify(userModels.Password, login.Password);
-                            if (password == true) 
+                        if (password == true) 
                             {
                             return Content(HttpStatusCode.OK, password);
                             }
